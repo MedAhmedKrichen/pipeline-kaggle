@@ -1,4 +1,4 @@
-from sklearn.cross_validation import KFold
+from sklearn.model_selection import KFold
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 import numpy as np
