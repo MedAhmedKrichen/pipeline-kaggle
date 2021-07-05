@@ -11,30 +11,30 @@ from common import set_logging_config, get_model_config
 # set logging config
 set_logging_config()
 
-    # read in data
-    MyData = DataWarehouse()
-    MyData.read_data()
+# read in data
+MyData = DataWarehouse()
+MyData.read_data()
 
-    # read in configuration
-    config = get_model_config('config/basic.yml')
-    MyFeature = FeatureGenerator(MyData, config)
-    MyFeature.compute_features()
+# read in configuration
+config = get_model_config('config/basic.yml')
+MyFeature = FeatureGenerator(MyData, config)
+MyFeature.compute_features()
 
-    # initialize models
-    mdl_type = 'lr'
-    model_xgb = Model(MyFeature, mdl_type, config['models'][mdl_type])
+# initialize models
+mdl_type = 'lr'
+model_xgb = Model(MyFeature, mdl_type, config['models'][mdl_type])
 
-    # use validator to do k-fold validation
-    MyValidator = Validator(model_xgb)
-    MyValidator.validate_kfold(4, metric='auc')
+# use validator to do k-fold validation
+MyValidator = Validator(model_xgb)
+MyValidator.validate_kfold(4, metric='auc')
 
-    #-------- Stacking ------------------
-    mdl_type = 'xgb'
-    stack_mdl = Model(MyFeature, mdl_type, config['models'][mdl_type])
+#-------- Stacking ------------------
+mdl_type = 'xgb'
+stack_mdl = Model(MyFeature, mdl_type, config['models'][mdl_type])
 
-    mdl_list = [model_xgb]
-    base_feature = MyFeature
-    stacker = Stacker(mdl_list, base_feature, stack_mdl, num_stack=4)
+mdl_list = [model_xgb]
+base_feature = MyFeature
+stacker = Stacker(mdl_list, base_feature, stack_mdl, num_stack=4)
 
     MyValidator = Validator(stacker)
     MyValidator.validate_kfold(4, metric='auc')
