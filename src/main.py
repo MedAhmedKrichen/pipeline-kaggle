@@ -36,10 +36,10 @@ mdl_list = [model_xgb]
 base_feature = MyFeature
 stacker = Stacker(mdl_list, base_feature, stack_mdl, num_stack=4)
 
-    MyValidator = Validator(stacker)
-    MyValidator.validate_kfold(4, metric='auc')
+MyValidator = Validator(stacker)
+MyValidator.validate_kfold(4, metric='auc')
 
-    #---------Generating outputs ---------------
-    stacker.train_all()
-    ypred = stacker.predict_all()
-    MyData.generate_submission(ypred)
+#---------Generating outputs ---------------
+stacker.train_all()
+ypred = stacker.predict_all()
+MyData.generate_submission(ypred)
