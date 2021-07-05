@@ -23,7 +23,7 @@ class FeatureGenerator(object):
 
         # append features as new columns
         fconfig = self.config['features']
-        for k,v in fconfig.iteritems():
+        for k,v in fconfig.items():
             if(v!=-1):
                 self.feature_names.append(k)
                 opt = v
@@ -59,9 +59,9 @@ class FeatureGenerator(object):
     def extract_age(self, opt):
         # impute date
         data_all = pd.concat([self.DW.train_in['Age'], self.DW.test_in['Age']])
+
         data_mean = data_all.mean()
         data_all = data_all.fillna(data_mean)
-
         n_train = self.DW.train_in.shape[0]
         tmpTrain = data_all[:n_train].as_matrix()[:,None]
         tmpTest = data_all[n_train:].as_matrix()[:,None]
