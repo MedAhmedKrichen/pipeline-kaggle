@@ -11,7 +11,6 @@ from common import set_logging_config, get_model_config
 # set logging config
 set_logging_config()
 
-if __name__ == "__main__":
     # read in data
     MyData = DataWarehouse()
     MyData.read_data()
