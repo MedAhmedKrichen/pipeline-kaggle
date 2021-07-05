@@ -1,4 +1,4 @@
-from sklearn.cross_validation import KFold
+from sklearn.model_selection import KFold
 from sklearn.metrics import roc_curve, auc
 from sklearn.metrics import log_loss
 import numpy as np
