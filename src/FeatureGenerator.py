@@ -52,8 +52,8 @@ class FeatureGenerator(object):
         raise Exception('Can not modify DataWarehouse through FeatureGenerator')
 
     def extract_sex(self, opt):
-        tmpTrain = self.DW.train_in['Sex'].apply(lambda x: 1 if x=='male' else 0).as_matrix()[:,None]
-        tmpTest = self.DW.test_in['Sex'].apply(lambda x: 1 if x=='male' else 0).as_matrix()[:,None]
+        tmpTrain = self.DW.train_in['Sex'].apply(lambda x: 1 if x=='male' else 0).to_numpy ()[:,None]
+        tmpTest = self.DW.test_in['Sex'].apply(lambda x: 1 if x=='male' else 0).to_numpy ()[:,None]
         return tmpTrain, tmpTest
 
     def extract_age(self, opt):
@@ -63,12 +63,12 @@ class FeatureGenerator(object):
         data_mean = data_all.mean()
         data_all = data_all.fillna(data_mean)
         n_train = self.DW.train_in.shape[0]
-        tmpTrain = data_all[:n_train].as_matrix()[:,None]
-        tmpTest = data_all[n_train:].as_matrix()[:,None]
+        tmpTrain = data_all[:n_train].to_numpy ()[:,None]
+        tmpTest = data_all[n_train:].to_numpy ()[:,None]
         return tmpTrain, tmpTest
 
     def extract_sibsp(self, opt):
-        return self.DW.train_in['SibSp'].as_matrix()[:,None], self.DW.test_in['SibSp'].as_matrix()[:,None]
+        return self.DW.train_in['SibSp'].as_matrix()[:,None], self.DW.test_in['SibSp'].to_numpy ()[:,None]
 
     def extract_embarked(self, opt):
         data_all = pd.concat([self.DW.train_in['Embarked'], self.DW.test_in['Embarked']]).to_frame()
@@ -76,8 +76,8 @@ class FeatureGenerator(object):
         data_all['Embarked'] = data_all['Embarked'].apply(lambda x: num_count[x] if x in num_count.keys() else 0)
 
         n_train = self.DW.train_in.shape[0]
-        tmpTrain = data_all[:n_train].as_matrix()
-        tmpTest = data_all[n_train:].as_matrix()
+        tmpTrain = data_all[:n_train].to_numpy ()
+        tmpTest = data_all[n_train:].to_numpy ()
         return tmpTrain, tmpTest
 
     def normalize_features(self):
