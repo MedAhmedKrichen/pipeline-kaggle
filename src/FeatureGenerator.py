@@ -68,7 +68,7 @@ class FeatureGenerator(object):
         return tmpTrain, tmpTest
 
     def extract_sibsp(self, opt):
-        return self.DW.train_in['SibSp'].as_matrix()[:,None], self.DW.test_in['SibSp'].to_numpy ()[:,None]
+        return self.DW.train_in['SibSp'].to_numpy()[:,None], self.DW.test_in['SibSp'].to_numpy ()[:,None]
 
     def extract_embarked(self, opt):
         data_all = pd.concat([self.DW.train_in['Embarked'], self.DW.test_in['Embarked']]).to_frame()
