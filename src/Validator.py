@@ -19,10 +19,10 @@ class Validator():
         :param metric: evaluation metric
         :return: none
         """
-        kf = KFold(self.Mdl.train_out.shape[0], n_splits=num_fold, shuffle=is_shuffle)
+        kf = KFold( n_splits=num_fold, shuffle=is_shuffle)
         self.mdl_score = []
 
-        for train_idx, test_idx in kf:
+        for train_idx, test_idx in kf.split():
             logging.info('working on k-fold validation')
             test_out = self.Mdl.train_out[test_idx]
 
