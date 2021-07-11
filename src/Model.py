@@ -1,6 +1,7 @@
 from sklearn.model_selection import KFold
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.svm import SVC
 import numpy as np
 import xgboost as xgb
 import logging
@@ -43,6 +44,8 @@ class Model(object):
             self.mdl = LogisticRegression(**param)
         elif (mdl_type == 'rf'):
             self.mdl = RandomForestClassifier(**param)
+        elif (md1_type =='svm'):
+            self.mdl = SVC(**param)
 
     def _cvtrain(self, train_idx):
         """
