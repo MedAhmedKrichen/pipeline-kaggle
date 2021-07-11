@@ -22,7 +22,7 @@ class Validator():
         kf = KFold( n_splits=num_fold, shuffle=is_shuffle)
         self.mdl_score = []
 
-        for train_idx, test_idx in kf.split():
+        for train_idx, test_idx in kf.split(self.Mdl.train_out):
             logging.info('working on k-fold validation')
             test_out = self.Mdl.train_out[test_idx]
 
