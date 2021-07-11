@@ -44,7 +44,7 @@ class Model(object):
             self.mdl = LogisticRegression(**param)
         elif (mdl_type == 'rf'):
             self.mdl = RandomForestClassifier(**param)
-        elif (md1_type =='svm'):
+        elif (mdl_type == 'svm'):
             self.mdl = SVC(**param)
 
     def _cvtrain(self, train_idx):
