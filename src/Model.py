@@ -68,7 +68,7 @@ class Model(object):
         :return: stacking prediction vector
         """
         logging.info('generating stacking fold for model %s with seed %d'%(self.mdl_type, seed))
-        kf = KFold(all_idx.shape[0], n_folds=num_stack, shuffle=True, random_state=seed)
+        kf = KFold(all_idx.shape[0], n_splits=num_stack, shuffle=True, random_state=seed)
         ptrain = np.zeros((all_idx.shape[0], 1))
 
         for train_idx, test_idx in kf:
