@@ -51,10 +51,10 @@ class FeatureGenerator(object):
     def DW(self, value):
         raise Exception('Can not modify DataWarehouse through FeatureGenerator')
 
-    def extract_sex(self, opt):
+    def extract_gender(self, opt):
         #feature eng for binary features
-        tmpTrain = self.DW.train_in['sex'].apply(lambda x: 1 if x=='male' else 0).to_numpy ()[:,None]
-        tmpTest = self.DW.test_in['sex'].apply(lambda x: 1 if x=='male' else 0).to_numpy ()[:,None]
+        tmpTrain = self.DW.train_in['gender'].apply(lambda x: 1 if x=='male' else 0).to_numpy ()[:,None]
+        tmpTest = self.DW.test_in['gender'].apply(lambda x: 1 if x=='male' else 0).to_numpy ()[:,None]
         return tmpTrain, tmpTest
 
     def extract_age(self, opt):
