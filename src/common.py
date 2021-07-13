@@ -9,12 +9,12 @@ DATA_TRAIN = os.path.join(DATA_FOLDER, 'train.csv')
 DATA_TEST = os.path.join(DATA_FOLDER, 'test.csv')
 
 # define ID and output variable
-DATA_ID = 'PassengerId'
-DATA_OUT_FEATURE = 'Survived'
+DATA_ID = 'enrollee_id'
+DATA_OUT_FEATURE = 'target'
 
 # define submission
 SUBMISSION_FOLDER = os.path.join(SRC_PATH, '../submission/')
-SUBMIT_ID = 'PassengerId'
+SUBMIT_ID = 'enrollee_id'
 
 # logging and debug setting
 LOG_FILE = 'record.log'
