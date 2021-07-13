@@ -38,7 +38,7 @@ class FeatureGenerator(object):
                     self.fTest = tmpTest
 
         logging.info("finish feature extraction")
-
+"""
     @property
     def train_out(self):
         return self.DW.train_out
@@ -86,3 +86,4 @@ class FeatureGenerator(object):
         self.scaler.fit(self.fTrain)
         self.fTrain = self.scaler.transform(self.fTrain)
         self.fTest = self.scaler.transform(self.fTest)
+"""
