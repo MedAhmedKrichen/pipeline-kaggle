@@ -2,7 +2,7 @@ output: basic
 
 features:
  gender: 1
- age: 1
+ training_hours: 1
  city_development_index: 1
  education_level: 1
 
