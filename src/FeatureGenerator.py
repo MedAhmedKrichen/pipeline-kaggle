@@ -57,9 +57,9 @@ class FeatureGenerator(object):
         tmpTest = self.DW.test_in['gender'].apply(lambda x: 1 if x=='male' else 0).to_numpy ()[:,None]
         return tmpTrain, tmpTest
 
-    def extract_age(self, opt):
+    def extract_training_hours(self, opt):
         # impute date
-        data_all = pd.concat([self.DW.train_in['age'], self.DW.test_in['age']])
+        data_all = pd.concat([self.DW.train_in['training_hours'], self.DW.test_in['training_hours']])
 
         data_mean = data_all.mean()
         data_all = data_all.fillna(data_mean)
