@@ -53,13 +53,13 @@ class FeatureGenerator(object):
 
     def extract_sex(self, opt):
         #feature eng for binary features
-        tmpTrain = self.DW.train_in['Sex'].apply(lambda x: 1 if x=='male' else 0).to_numpy ()[:,None]
-        tmpTest = self.DW.test_in['Sex'].apply(lambda x: 1 if x=='male' else 0).to_numpy ()[:,None]
+        tmpTrain = self.DW.train_in['sex'].apply(lambda x: 1 if x=='male' else 0).to_numpy ()[:,None]
+        tmpTest = self.DW.test_in['sex'].apply(lambda x: 1 if x=='male' else 0).to_numpy ()[:,None]
         return tmpTrain, tmpTest
 
     def extract_age(self, opt):
         # impute date
-        data_all = pd.concat([self.DW.train_in['Age'], self.DW.test_in['Age']])
+        data_all = pd.concat([self.DW.train_in['age'], self.DW.test_in['age']])
 
         data_mean = data_all.mean()
         data_all = data_all.fillna(data_mean)
@@ -69,12 +69,12 @@ class FeatureGenerator(object):
         return tmpTrain, tmpTest
 
     def extract_city_development_index(self, opt):
-        return self.DW.train_in['SibSp'].to_numpy()[:,None], self.DW.test_in['SibSp'].to_numpy ()[:,None]
+        return self.DW.train_in['city_development_index'].to_numpy()[:,None], self.DW.test_in['city_development_index'].to_numpy ()[:,None]
 
     def extract_education_level(self, opt):
-        data_all = pd.concat([self.DW.train_in['Embarked'], self.DW.test_in['Embarked']]).to_frame()
-        num_count = data_all['Embarked'].value_counts().to_dict()
-        data_all['Embarked'] = data_all['Embarked'].apply(lambda x: num_count[x] if x in num_count.keys() else 0)
+        data_all = pd.concat([self.DW.train_in['education_level'], self.DW.test_in['education_level']]).to_frame()
+        num_count = data_all['education_level'].value_counts().to_dict()
+        data_all['education_level'] = data_all['education_level'].apply(lambda x: num_count[x] if x in num_count.keys() else 0)
 
         n_train = self.DW.train_in.shape[0]
         tmpTrain = data_all[:n_train].to_numpy ()
