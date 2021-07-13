@@ -52,6 +52,7 @@ class FeatureGenerator(object):
         raise Exception('Can not modify DataWarehouse through FeatureGenerator')
 
     def extract_sex(self, opt):
+        #feature eng for binary features
         tmpTrain = self.DW.train_in['Sex'].apply(lambda x: 1 if x=='male' else 0).to_numpy ()[:,None]
         tmpTest = self.DW.test_in['Sex'].apply(lambda x: 1 if x=='male' else 0).to_numpy ()[:,None]
         return tmpTrain, tmpTest
@@ -67,10 +68,10 @@ class FeatureGenerator(object):
         tmpTest = data_all[n_train:].to_numpy ()[:,None]
         return tmpTrain, tmpTest
 
-    def extract_sibsp(self, opt):
+    def extract_city_development_index(self, opt):
         return self.DW.train_in['SibSp'].to_numpy()[:,None], self.DW.test_in['SibSp'].to_numpy ()[:,None]
 
-    def extract_embarked(self, opt):
+    def extract_education_level(self, opt):
         data_all = pd.concat([self.DW.train_in['Embarked'], self.DW.test_in['Embarked']]).to_frame()
         num_count = data_all['Embarked'].value_counts().to_dict()
         data_all['Embarked'] = data_all['Embarked'].apply(lambda x: num_count[x] if x in num_count.keys() else 0)
