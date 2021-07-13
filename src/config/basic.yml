@@ -1,7 +1,7 @@
 output: basic
 
 features:
- sex: 1
+ gender: 1
  age: 1
  city_development_index: 1
  education_level: 1
